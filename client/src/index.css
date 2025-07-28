@@ -1,0 +1,200 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Card animations */
+.card-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.card-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.card-exit {
+  opacity: 1;
+}
+
+.card-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* Player position utilities */
+.player-area {
+  min-width: 150px;
+}
+
+.player-bottom {
+  /* Current player at bottom */
+}
+
+.player-left {
+  /* Player to the left */
+  transform: rotate(0deg);
+}
+
+.player-top {
+  /* Player across from current */
+}
+
+.player-right {
+  /* Player to the right */
+  transform: rotate(0deg);
+}
+
+/* Game table styling */
+.game-table {
+  background: linear-gradient(135deg, #2d5016 0%, #456f2a 100%);
+  border-radius: 50%;
+}
+
+/* Trick area styling */
+.trick-area {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .player-area {
+    min-width: 120px;
+  }
+  
+  .game-area {
+    padding: 1rem;
+  }
+  
+  .card-hand {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* Loading animation */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Custom button styles */
+.btn-primary {
+  @apply bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors;
+}
+
+.btn-secondary {
+  @apply bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors;
+}
+
+.btn-success {
+  @apply bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors;
+}
+
+.btn-danger {
+  @apply bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors;
+}
+
+/* Card selection effect */
+.card-selected {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border-color: #3b82f6;
+}
+
+/* Game phase indicators */
+.phase-bidding {
+  color: #f59e0b;
+}
+
+.phase-playing {
+  color: #10b981;
+}
+
+.phase-waiting {
+  color: #6b7280;
+}
+
+/* Score display */
+.score-positive {
+  color: #10b981;
+}
+
+.score-negative {
+  color: #ef4444;
+}
+
+.score-neutral {
+  color: #6b7280;
+}
+
+
+@keyframes throwCardToCenter {
+  0% {
+    left: var(--start-x);
+    top: var(--start-y);
+    transform: translate(-50%, -50%) rotate(var(--start-rotation)) scale(0.9);
+    opacity: 0.8;
+  }
+  50% {
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%) rotate(-5deg) scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+}
